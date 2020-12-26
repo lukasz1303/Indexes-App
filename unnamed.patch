@@ -1,0 +1,2014 @@
+Index: Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties	(date 1582883073070)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Fri Feb 28 10:44:33 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/gradle/wrapper/gradle-wrapper.properties	(date 1583675959369)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Sun Mar 08 14:59:19 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/build.gradle	(date 1582838981345)
+@@ -1,12 +1,12 @@
+ apply plugin: 'com.android.application'
+ 
+ android {
+-    compileSdkVersion 25
++    compileSdkVersion 29
+ 
+     defaultConfig {
+         applicationId "com.android.example.favoritetoys"
+-        minSdkVersion 10
+-        targetSdkVersion 25
++        minSdkVersion 14
++        targetSdkVersion 29
+         versionCode 1
+         versionName "1.0"
+     }
+@@ -19,5 +19,5 @@
+ 
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+-    implementation 'com.android.support:appcompat-v7:25.1.0'
++    implementation 'com.android.support:appcompat-v7:25.4.0'
+ }
+\ No newline at end of file
+Index: Lesson04b-Webpages-Maps-and-Sharing/T04b.02-Exercise-OpenMap/app/src/main/java/com/example/android/implicitintents/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04b-Webpages-Maps-and-Sharing/T04b.02-Exercise-OpenMap/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04b-Webpages-Maps-and-Sharing/T04b.02-Exercise-OpenMap/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(date 1584183179489)
+@@ -49,11 +49,16 @@
+      */
+     public void onClickOpenAddressButton(View v) {
+         // TODO (5) Store an address in a String
+-
++        String address = "Poland, Turek, Korytków 3b";
+         // TODO (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
+ 
++        Uri.Builder b = new Uri.Builder();
++        b.scheme("geo")
++                .path("0,0")
++                .appendQueryParameter("q",address);
++        Uri u = b.build();
+         // TODO (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
+-        Toast.makeText(this, "TODO: Open a map when this button is clicked", Toast.LENGTH_SHORT).show();
++        showmMap(u);
+     }
+ 
+     /**
+@@ -114,6 +119,14 @@
+ 
+     // TODO (1) Create a method called showMap with a Uri as the single parameter
+     // Do steps 2 - 4 within the showMap method
++
++    private void showmMap(Uri uri){
++        Intent intent = new Intent(Intent.ACTION_VIEW);
++        intent.setData(uri);
++        if (intent.resolveActivity(getPackageManager()) != null){
++            startActivity(intent);
++        }
++    }
+         // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW
+ 
+         // TODO (3) Set the data of the Intent to the Uri passed into this method
+Index: Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/build.gradle	(date 1582883102446)
+@@ -1,12 +1,12 @@
+ apply plugin: 'com.android.application'
+ 
+ android {
+-    compileSdkVersion 25
++    compileSdkVersion 29
+ 
+     defaultConfig {
+         applicationId "com.example.android.datafrominternet"
+-        minSdkVersion 10
+-        targetSdkVersion 25
++        minSdkVersion 14
++        targetSdkVersion 29
+         versionCode 1
+         versionName "1.0"
+     }
+@@ -19,8 +19,7 @@
+ 
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
++    //noinspection GradleCompatible
+     implementation 'com.android.support:appcompat-v7:25.1.0'
+ 
+-    // TODO (32) Remove the ConstraintLayout dependency as we aren't using it for these simple projects
+-    implementation 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+ }
+\ No newline at end of file
+Index: Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/build.gradle	(date 1583876395719)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/res/layout/activity_main.xml	(date 1582838981337)
+@@ -19,8 +19,8 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-    <!--TODO (2) Add an id to the TextView with the value @+id/tv_toy_names-->
+     <TextView
++        android:id="@+id/tv_toy_names"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:padding="16dp"
+Index: Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/MainActivity.java	(date 1583962080357)
+@@ -19,11 +19,13 @@
+ import android.support.v7.app.AppCompatActivity;
+ import android.support.v7.widget.LinearLayoutManager;
+ import android.support.v7.widget.RecyclerView;
++import android.util.Log;
+ import android.view.Menu;
+ import android.view.MenuItem;
++import android.widget.Toast;
+ 
+ // TODO (8) Implement GreenAdapter.ListItemClickListener from the MainActivity
+-public class MainActivity extends AppCompatActivity {
++public class MainActivity extends AppCompatActivity implements GreenAdapter.ListItemClickListener {
+ 
+     private static final int NUM_LIST_ITEMS = 100;
+ 
+@@ -35,6 +37,7 @@
+     private RecyclerView mNumbersList;
+ 
+     // TODO (9) Create a Toast variable called mToast to store the current Toast
++    private Toast mToast;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -71,7 +74,7 @@
+         /*
+          * The GreenAdapter is responsible for displaying each item in the list.
+          */
+-        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
++        mAdapter = new GreenAdapter(NUM_LIST_ITEMS,this);
+         mNumbersList.setAdapter(mAdapter);
+     }
+ 
+@@ -95,7 +98,7 @@
+              */
+             case R.id.action_refresh:
+                 // TODO (14) Pass in this as the ListItemClickListener to the GreenAdapter constructor
+-                mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
++                mAdapter = new GreenAdapter(NUM_LIST_ITEMS, this);
+                 mNumbersList.setAdapter(mAdapter);
+                 return true;
+         }
+@@ -104,6 +107,17 @@
+     }
+ 
+     // TODO (10) Override ListItemClickListener's onListItemClick method
++
++    @Override
++    public void onListItemClick(int p) {
++        if(mToast != null){
++            mToast.cancel();
++        }
++
++        mToast = Toast.makeText(this,String.valueOf(p), Toast.LENGTH_SHORT);
++        mToast.show();
++    }
++
+     // TODO (11) In the beginning of the method, cancel the Toast if it isn't null
+     // TODO (12) Show a Toast when an item is clicked, displaying that item number that was clicked
+ }
+Index: Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/MainActivity.java	(date 1584037551295)
+@@ -54,7 +54,7 @@
+             @Override
+             public void onClick(View v) {
+                 // TODO (1) Retrieve the text from the EditText and store it in a variable
+-
++                String text = mNameEntry.getText().toString();
+                 /*
+                  * Storing the Context in a variable in this case is redundant since we could have
+                  * just used "this" or "MainActivity.this" in the method call below. However, we
+@@ -74,7 +74,7 @@
+                 Intent startChildActivityIntent = new Intent(context, destinationActivity);
+ 
+                 // TODO (2) Use the putExtra method to put the String from the EditText in the Intent
+-
++                startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, text);
+                 /*
+                  * Once the Intent has been created, we can use Activity's method, "startActivity"
+                  * to start the ChildActivity.
+Index: Lesson03-Green-Recycler-View/T03.04-Exercise-WiringUpRecyclerView/app/src/main/java/com/example/android/recyclerview/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.04-Exercise-WiringUpRecyclerView/app/src/main/java/com/example/android/recyclerview/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.04-Exercise-WiringUpRecyclerView/app/src/main/java/com/example/android/recyclerview/MainActivity.java	(date 1583920528785)
+@@ -17,13 +17,19 @@
+ 
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.LinearLayoutManager;
++import android.support.v7.widget.RecyclerView;
++import android.widget.LinearLayout;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+     // TODO (1) Create a private static final int called NUM_LIST_ITEMS and set it equal to 100
++    private static final int NUM_LIST_ITEMS = 100;
+ 
+     // TODO (2) Create a GreenAdapter variable called mAdapter
++    GreenAdapter mAdapter;
+     // TODO (3) Create a RecyclerView variable called mNumbersList
++    RecyclerView mNumberList;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -31,14 +37,22 @@
+         setContentView(R.layout.activity_main);
+ 
+         // TODO (4) Use findViewById to store a reference to the RecyclerView in mNumbersList
++        mNumberList = (RecyclerView) findViewById(R.id.rv_numbers);
+ 
+         // TODO (5) Create a LinearLayoutManager variable called layoutManager
++
++        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+         // TODO (6) Use setLayoutManager on mNumbersList with the LinearLayoutManager we created above
+ 
++        mNumberList.setLayoutManager(layoutManager);
++
+         // TODO (7) Use setHasFixedSize(true) to designate that the contents of the RecyclerView won't change an item's size
++        mNumberList.setHasFixedSize(true);
+ 
+         // TODO (8) Store a new GreenAdapter in mAdapter and pass it NUM_LIST_ITEMS
++        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
+ 
+         // TODO (9) Set the GreenAdapter you created on mNumbersList
++        mNumberList.setAdapter(mAdapter);
+     }
+ }
+Index: Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/app/src/main/java/com/example/android/implicitintents/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(date 1584191393957)
+@@ -18,6 +18,7 @@
+ import android.content.Intent;
+ import android.net.Uri;
+ import android.os.Bundle;
++import android.support.v4.app.ShareCompat;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.View;
+ import android.widget.Toast;
+@@ -68,8 +69,10 @@
+     public void onClickShareTextButton(View v) {
+         // TODO (5) Specify a String you'd like to share
+ 
++        String ss = "cos";
++
+         // TODO (6) Replace the Toast with shareText, passing in the String from step 5
+-        Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
++        shareText(ss);
+     }
+ 
+     /**
+@@ -145,6 +148,18 @@
+ 
+     // TODO (1) Create a void method called shareText that accepts a String as a parameter
+     // Do steps 2 - 4 within the shareText method
++    private void shareText(String s){
++        String mimeType = "text/plain";
++        String title = "My title";
++        ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(MainActivity.this);
++        builder.setType(mimeType);
++        Intent i = builder.setSubject(title).setText(s).getIntent();
++
++        if(i.resolveActivity(getPackageManager())!= null){
++            startActivity(i);
++        }
++    }
++
+ 
+         // TODO (2) Create a String variable called mimeType and set it to "text/plain"
+ 
+Index: Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml	(date 1582883667530)
+@@ -15,49 +15,44 @@
+   limitations under the License.
+ -->
+ 
+-<!--TODO (1) Change the ConstraintLayout to a LinearLayout-->
+-<!--TODO (2) Make the orientation vertical-->
+-<!--TODO (3) Give left, right, and top padding of 16dp-->
+-<!--TODO (4) Remove the line that declares the id, we don't need it-->
+-<!--TODO (5) Remove the xmlns:app declaration, we don't need that anymore-->
+-<android.support.constraint.ConstraintLayout
++
++<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:id="@+id/activity_main"
++    android:orientation="vertical"
++    android:paddingLeft="16dp"
++    android:paddingRight="16dp"
++    android:paddingTop="16dp"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-    <!--TODO (6) Delete this TextView-->
++
++    <EditText
++        android:id="@+id/et_search_box"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:textSize="22sp"
++        android:hint="Enter a query and click search"/>
++
+     <TextView
++        android:id="@+id/tv_url_display"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Hello World!"
+-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"
+-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
+-        app:layout_constraintRight_toRightOf="@+id/activity_main"
+-        app:layout_constraintTop_toTopOf="@+id/activity_main" />
+-
+-    <!--TODO (7) Add an EditText-->
+-    <!--TODO (8) Give the EditText an id of @+id/et_search_box-->
+-    <!--TODO (9) Set the text size to 22sp-->
+-    <!--TODO (10) Set the width to match_parent and the height to wrap_content-->
+-    <!--TODO (11) Provide a hint telling the user to enter a query and then click search-->
++        android:textSize="22sp"
++        android:layout_margin="8dp"
++        android:text="Search url will show up here when you click search"/>
++
++
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="16dp">
++        <TextView
++            android:id="@+id/tv_github_search_results_json"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textSize="18sp"
++            android:text="Make search"/>
++    </ScrollView>
+ 
+-    <!--TODO (12) Add a TextView-->
+-    <!--TODO (13) Give the TextView an id of @+id/tv_url_display-->
+-    <!--TODO (14) Set the text size to 22sp-->
+-    <!--TODO (15) Set the width to wrap_content and the height to wrap_content-->
+-    <!--TODO (16) Give the TextView a top margin of 8dp-->
+-    <!--TODO (17) Set the text to tell the user their search URL will show up here when they click search-->
+ 
+-    <!--TODO (18) Add a ScrollView-->
+-    <!--TODO (19) Set the width to match_parent and the height to wrap_content-->
+-    <!--TODO (20) Set the top margin to 16dp-->
+-
+-        <!--TODO (21) Within the ScrollView, add a TextView-->
+-        <!--TODO (22) Give the TextView an id of @+id/tv_github_search_results_json-->
+-        <!--TODO (23) Set the text size to 18sp-->
+-        <!--TODO (24) Set the height and width to wrap_content-->
+-        <!--TODO (25) Set the text to something that tells the user to make a search-->
+-
+-</android.support.constraint.ConstraintLayout>
++</LinearLayout>
+Index: Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.07-Exercise-RecyclerViewClickHandling/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(date 1583961656723)
+@@ -40,7 +40,7 @@
+     private static final String TAG = GreenAdapter.class.getSimpleName();
+ 
+     // TODO (3) Create a final private ListItemClickListener called mOnClickListener
+-
++    final private ListItemClickListener mOnClickListener;
+     /*
+      * The number of ViewHolders that have been created. Typically, you can figure out how many
+      * there should be by determining how many list items fit on your screen at once and add 2 to 4
+@@ -88,16 +88,21 @@
+     private int mNumberItems;
+ 
+     // TODO (1) Add an interface called ListItemClickListener
++    public interface ListItemClickListener {
++        void onListItemClick(int p);
++    }
+     // TODO (2) Within that interface, define a void method called onListItemClick that takes an int as a parameter
+ 
+     // TODO (4) Add a ListItemClickListener as a parameter to the constructor and store it in mOnClickListener
++
+     /**
+      * Constructor for GreenAdapter that accepts a number of items to display and the specification
+      * for the ListItemClickListener.
+      *
+      * @param numberOfItems Number of items to display in list
+      */
+-    public GreenAdapter(int numberOfItems) {
++    public GreenAdapter(int numberOfItems, ListItemClickListener listener) {
++        mOnClickListener = listener;
+         mNumberItems = numberOfItems;
+         viewHolderCount = 0;
+     }
+@@ -167,7 +172,7 @@
+     /**
+      * Cache of the children views for a list item.
+      */
+-    class NumberViewHolder extends RecyclerView.ViewHolder {
++    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+ 
+         // Will display the position in the list, ie 0 through getItemCount() - 1
+         TextView listItemNumberView;
+@@ -187,6 +192,7 @@
+             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+             viewHolderIndex = (TextView) itemView.findViewById(R.id.tv_view_holder_instance);
+             // TODO (7) Call setOnClickListener on the View passed into the constructor (use 'this' as the OnClickListener)
++            itemView.setOnClickListener(this);
+         }
+ 
+         /**
+@@ -198,6 +204,11 @@
+             listItemNumberView.setText(String.valueOf(listIndex));
+         }
+ 
++        @Override
++        public void onClick(View view) {
++            int position =  getAdapterPosition();
++            mOnClickListener.onListItemClick(position);
++        }
+         // TODO (6) Override onClick, passing the clicked item's position (getAdapterPosition()) to mOnClickListener via its onListItemClick method
+     }
+ }
+Index: Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/ChildActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/ChildActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04a-Starting-New-Activities/T04a.03-Exercise-PassingDataBetweenActivities/app/src/main/java/com/example/android/explicitintent/ChildActivity.java	(date 1584040106856)
+@@ -15,6 +15,7 @@
+  */
+ package com.example.android.explicitintent;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.widget.TextView;
+@@ -33,11 +34,10 @@
+         mDisplayText = (TextView) findViewById(R.id.tv_display);
+ 
+         // TODO (3) Use the getIntent method to store the Intent that started this Activity in a variable
+-
++        Intent i = getIntent();
+         // TODO (4) Create an if statement to check if this Intent has the extra we passed from MainActivity
+-
+-            // TODO (5) If the Intent contains the correct extra, retrieve the text
+-
+-            // TODO (6) If the Intent contains the correct extra, use it to set the TextView text
++        if(i.hasExtra(Intent.EXTRA_TEXT)) {
++            mDisplayText.setText(i.getStringExtra(Intent.EXTRA_TEXT));
++        }
+     }
+ }
+\ No newline at end of file
+Index: Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/build.gradle	(date 1582828532198)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/java/com/example/android/favoritetoys/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/java/com/example/android/favoritetoys/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/app/src/main/java/com/example/android/favoritetoys/MainActivity.java	(date 1582839095412)
+@@ -17,10 +17,12 @@
+ 
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.widget.TextView;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+     // TODO (1) Declare a TextView variable called mToysListTextView
++    TextView mToysListTextView;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -28,9 +30,16 @@
+         setContentView(R.layout.activity_main);
+ 
+         // TODO (3) Use findViewById to get a reference to the TextView from the layout
++        mToysListTextView = (TextView) findViewById(R.id.tv_toy_names);
+ 
+         // TODO (4) Use the static ToyBox.getToyNames method and store the names in a String array
+ 
++        String names[] = ToyBox.getToyNames();
++
+         // TODO (5) Loop through each toy and append the name to the TextView (add \n for spacing)
++
++        for (String name: names){
++            mToysListTextView.append(name + "\n");
++        }
+     }
+ }
+\ No newline at end of file
+Index: Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1582883667520)
+@@ -17,22 +17,21 @@
+ 
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.widget.EditText;
++import android.widget.TextView;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+-    // TODO (26) Create an EditText variable called mSearchBoxEditText
+-
+-    // TODO (27) Create a TextView variable called mUrlDisplayTextView
+-    // TODO (28) Create a TextView variable called mSearchResultsTextView
++    EditText mSearchBoxEditText;
++    TextView mUrlDisplayTextView;
++    TextView mSearchResultsTextView;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+-
+-        // TODO (29) Use findViewById to get a reference to mSearchBoxEditText
+-
+-        // TODO (30) Use findViewById to get a reference to mUrlDisplayTextView
+-        // TODO (31) Use findViewById to get a reference to mSearchResultsTextView
++        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
++        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
++        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+     }
+ }
+Index: Lesson05a-Android-Lifecycle/T05a.01-Exercise-LogLifecycle/app/src/main/java/com/example/android/lifecycle/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson05a-Android-Lifecycle/T05a.01-Exercise-LogLifecycle/app/src/main/java/com/example/android/lifecycle/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson05a-Android-Lifecycle/T05a.01-Exercise-LogLifecycle/app/src/main/java/com/example/android/lifecycle/MainActivity.java	(date 1584269795404)
+@@ -48,8 +48,45 @@
+         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
+ 
+         // TODO (1) Use logAndAppend within onCreate
++        logAndAppend("onCreate");
++
++    }
++
++    @Override
++    protected void onStart() {
++        super.onStart();
++        logAndAppend("ON_START");
++    }
++
++    @Override
++    protected void onRestart() {
++        super.onRestart();
++        logAndAppend("ON_RESTART");
++    }
++
++    @Override
++    protected void onStop() {
++        super.onStop();
++        logAndAppend("ON_STOP");
++    }
++
++    @Override
++    protected void onDestroy() {
++        super.onDestroy();
++        logAndAppend("ON_DESTROY");
++    }
++
++    @Override
++    protected void onPause() {
++        super.onPause();
++        logAndAppend("ON_PAUSE");
+     }
+ 
++    @Override
++    protected void onResume() {
++        super.onResume();
++        logAndAppend("ON_RESUME");
++    }
+     // TODO (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
+ 
+     // TODO (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
+@@ -72,7 +109,7 @@
+     private void logAndAppend(String lifecycleEvent) {
+         Log.d(TAG, "Lifecycle Event: " + lifecycleEvent);
+ 
+-        mLifecycleDisplay.append(lifecycleEvent + "\n");
++        mLifecycleDisplay.append(lifecycleEvent + "\n\n\n");
+     }
+ 
+     /**
+Index: Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/build.gradle	(date 1582915247476)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/build.gradle	(date 1582838718248)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.01-Exercise-CreateLayout/build.gradle	(date 1582883073063)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/res/values/strings.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/res/values/strings.xml	(date 1582915361399)
+@@ -15,5 +15,5 @@
+   -->
+ <resources>
+     <string name="app_name">Github Query</string>
+-    <!--TODO (1) Add a string resource called search with the title "Search"-->
++    <string name="search">Search</string>
+ </resources>
+Index: Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/AndroidManifest.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/AndroidManifest.xml	(date 1583577741684)
+@@ -3,6 +3,7 @@
+           package="com.example.android.datafrominternet">
+ 
+     <!--TODO (1) Add the INTERNET permission-->
++    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+ 
+     <application
+         android:allowBackup="true"
+Index: Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/build.gradle	(date 1584183389847)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/build.gradle	(date 1583872199614)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/build.gradle	(date 1583871554452)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(date 1583877011819)
+@@ -15,7 +15,12 @@
+  */
+ package com.example.android.recyclerview;
+ 
++import android.annotation.SuppressLint;
++import android.app.Activity;
++import android.content.Context;
+ import android.support.v7.widget.RecyclerView;
++import android.view.ContextMenu;
++import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.TextView;
+@@ -33,21 +38,51 @@
+  * contents are green.
+  */
+ // TODO (4) From GreenAdapter, extend RecyclerView.Adapter<NumberViewHolder>
+-public class GreenAdapter {
++public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
+ 
+     // TODO (1) Add a private int variable called mNumberItems
+-
++    private int mNumberItems;
+     // TODO (2) Create a constructor for GreenAdapter that accepts an int as a parameter for numberOfItems
++    public GreenAdapter(int numberOfItems){
++        mNumberItems = numberOfItems;
++    }
+     // TODO (3) Store the numberOfItems parameter in mNumberItems
+ 
+     // TODO (5) Override the onCreateViewHolder method
++
++    @Override
++    public NumberViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
++        Context context = parent.getContext();
++        int LayoutIdForListItem = R.layout.number_list_item;
++        LayoutInflater inflater = LayoutInflater.from(context);
++        boolean shouldAttachToParentImmediately = false;
++
++        View view = inflater.inflate(LayoutIdForListItem, parent, shouldAttachToParentImmediately);
++        NumberViewHolder viewHolder = new NumberViewHolder(view);
++
++        return viewHolder;
++    }
++
+     // TODO (6) Create and return a new NumberViewHolder within this method
+ 
+     // TODO (7) Override onBindViewHolder
++
++    @Override
++    public void onBindViewHolder(NumberViewHolder holder, int position) {
++        holder.bind(position);
++    }
++
+     // TODO (8) Within onBindViewHolder, call holder.bind and pass in the position
+ 
++
+     // TODO (9) Override getItemCount and return the number of items to display
+ 
++
++    @Override
++    public int getItemCount() {
++        return mNumberItems;
++    }
++
+     /**
+      * Cache of the children views for a list item.
+      */
+Index: Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.03-Exercise-RecyclerViewAdapter/gradle/wrapper/gradle-wrapper.properties	(date 1583876395726)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 10:56:36 PST 2017
++#Tue Mar 10 22:39:55 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/layout/activity_main.xml	(date 1583683177135)
+@@ -1,5 +1,4 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<!--
++<?xml version="1.0" encoding="utf-8"?><!--
+   Copyright (C) 2016 The Android Open Source Project
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+@@ -11,14 +10,14 @@
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     android:paddingLeft="@dimen/activity_horizontal_margin"
+-    android:paddingRight="@dimen/activity_horizontal_margin"
+     android:paddingTop="@dimen/activity_vertical_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
+     tools:context="com.example.android.datafrominternet.MainActivity">
+ 
+     <EditText
+@@ -38,20 +37,23 @@
+ 
+     <!--TODO (2) Wrap the ScrollView in a FrameLayout-->
+     <!--TODO (3) Make the width and height of the FrameLayout match_parent-->
+-
+-    <ScrollView
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp">
++    <FrameLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++        <ScrollView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="16dp">
+ 
+-        <TextView
+-            android:id="@+id/tv_github_search_results_json"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Make a search!"
+-            android:textSize="18sp" />
+-    </ScrollView>
+-
++            <TextView
++                android:id="@+id/tv_github_search_results_json"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Make a search!"
++                android:textSize="18sp" />
++
++        </ScrollView>
++    </FrameLayout>
+     <!--TODO (4) Add a TextView to display an error message-->
+     <!--TODO (5) Set the text size to 22sp-->
+     <!--TODO (6) Give the TextView an id of @+id/tv_error_message_display-->
+Index: Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/build.gradle	(date 1582839155752)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson04a-Starting-New-Activities/T04a.02-Exercise-StartNewActivity/app/src/main/java/com/example/android/explicitintent/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04a-Starting-New-Activities/T04a.02-Exercise-StartNewActivity/app/src/main/java/com/example/android/explicitintent/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04a-Starting-New-Activities/T04a.02-Exercise-StartNewActivity/app/src/main/java/com/example/android/explicitintent/MainActivity.java	(date 1584037152644)
+@@ -16,6 +16,7 @@
+ package com.example.android.explicitintent;
+ 
+ import android.content.Context;
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.View;
+@@ -61,14 +62,8 @@
+                  */
+                 Context context = MainActivity.this;
+ 
+-                // TODO (1) Store ChildActivity.class in a Class object called destinationActivity
+-
+-                // TODO (2) Create an Intent to start ChildActivity
+-
+-                // TODO (3) Replace the Toast with code to start ChildActivity
+-                String message = "Button clicked!\nTODO: Start a new Activity and pass some data.";
+-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+-
++                Intent intent = new Intent(MainActivity.this, ChildActivity.class);
++                startActivity(intent);
+             }
+         });
+     }
+Index: Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1582915930260)
+@@ -17,8 +17,11 @@
+ 
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.view.Menu;
++import android.view.MenuItem;
+ import android.widget.EditText;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+@@ -39,23 +42,21 @@
+         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+     }
+ 
+-    // Do 2 - 7 in main.xml ///////////////////////////////////////////////////////////////////////
+-    // TODO (2) Create a menu xml called 'main.xml' in the res->menu folder
+-    // TODO (3) Add one menu item to your menu
+-    // TODO (4) Give the menu item an id of @+id/action_search
+-    // TODO (5) Set the orderInCategory to 1
+-    // TODO (6) Show this item if there is room (use app:showAsAction, not android:showAsAction)
+-    // TODO (7) Set the title to the search string ("Search") from strings.xml
+-    // Do 2 - 7 in main.xml ///////////////////////////////////////////////////////////////////////
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.main, menu);
++        return true;
++    }
+ 
+ 
+-    // TODO (8) Override onCreateOptionsMenu
+-    // TODO (9) Within onCreateOptionsMenu, use getMenuInflater().inflate to inflate the menu
+-    // TODO (10) Return true to display your menu
+-
+-    // TODO (11) Override onOptionsItemSelected
+-    // TODO (12) Within onOptionsItemSelected, get the ID of the item that was selected
+-    // TODO (13) If the item's ID is R.id.action_search, show a Toast and return true to tell Android that you've handled this menu click
+-    // TODO (14) Don't forgot to call .show() on your Toast
+-    // TODO (15) If you do NOT handle the menu click, return super.onOptionsItemSelected to let Android handle the menu click
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        int idItemSelcted = item.getItemId();
++        if (item.getItemId() == R.id.action_search){
++            Toast.makeText(MainActivity.this, "Searching", Toast.LENGTH_SHORT).show();
++            return true;
++        } else {
++            return  super.onOptionsItemSelected(item);
++        }
++    }
+ }
+Index: Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/build.gradle	(date 1582917341780)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.0'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/src/main/res/layout/activity_main.xml	(date 1583871696250)
+@@ -21,8 +21,10 @@
+ 
+     <!--TODO (2) Replace the TextView with a RecyclerView with an id of "@+id/rv_numbers"-->
+     <!--TODO (3) Make the width and height of the RecyclerView match_parent-->
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Hello World!" />
++    <android.support.v7.widget.RecyclerView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:id="@+id/rv_numbers">
++
++    </android.support.v7.widget.RecyclerView>
+ </FrameLayout>
+\ No newline at end of file
+Index: Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/values/strings.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/app/src/main/res/values/strings.xml	(date 1583683177142)
+@@ -16,5 +16,6 @@
+ <resources>
+     <string name="app_name">Github Query</string>
+     <string name="search">Search</string>
++    <string name="error_occurred">Failed to load  search, try again.</string>
+     <!--TODO (1) Add a string stating that an error has occurred-->
+ </resources>
+\ No newline at end of file
+Index: Lesson03-Green-Recycler-View/T03.06-Exercise-RefreshMenuButton/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.06-Exercise-RefreshMenuButton/app/src/main/res/values/strings.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.06-Exercise-RefreshMenuButton/app/src/main/res/values/strings.xml	(date 1583942110865)
+@@ -16,4 +16,5 @@
+ <resources>
+     <string name="app_name">RecyclerView</string>
+     <!--TODO (1) Add a String for the title of the menu item, "Reset"-->
++    <string name="reset">Reset</string>
+ </resources>
+Index: Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.02-Exercise-AddMenu/gradle/wrapper/gradle-wrapper.properties	(date 1582915247480)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Fri Feb 28 19:40:47 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/build.gradle	(date 1583577672097)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/build.gradle	(date 1582839203375)
+@@ -1,12 +1,12 @@
+ apply plugin: 'com.android.application'
+ 
+ android {
+-    compileSdkVersion 25
++    compileSdkVersion 29
+ 
+     defaultConfig {
+         applicationId "com.android.example.favoritetoys"
+-        minSdkVersion 10
+-        targetSdkVersion 25
++        minSdkVersion 14
++        targetSdkVersion 29
+         versionCode 1
+         versionName "1.0"
+     }
+@@ -19,5 +19,6 @@
+ 
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+-    implementation 'com.android.support:appcompat-v7:25.1.0'
++    //noinspection GradleCompatible
++    implementation 'com.android.support:appcompat-v7:25.4.0'
+ }
+\ No newline at end of file
+Index: Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1583577883295)
+@@ -24,6 +24,7 @@
+ 
+ import com.example.android.datafrominternet.utilities.NetworkUtils;
+ 
++import java.io.IOException;
+ import java.net.URL;
+ 
+ public class MainActivity extends AppCompatActivity {
+@@ -56,6 +57,14 @@
+         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+         mUrlDisplayTextView.setText(githubSearchUrl.toString());
+         // TODO (2) Call getResponseFromHttpUrl and display the results in mSearchResultsTextView
++        String githubSearchResults = null;
++        try{
++            githubSearchResults = NetworkUtils.getResponseFromHttpUrl(githubSearchUrl);
++            mSearchResultsTextView.setText(githubSearchResults);
++        } catch (IOException e){
++            e.printStackTrace();
++        }
++
+         // TODO (3) Surround the call to getResponseFromHttpUrl with a try / catch block to catch an IOException
+     }
+ 
+Index: Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(date 1583872983283)
+@@ -118,6 +118,21 @@
+     }
+ 
+     // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
++     class NumberViewHolder extends RecyclerView.ViewHolder{
++         private TextView listItemNumberView;
++
++         public NumberViewHolder (View itemView){
++             super(itemView);
++
++             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
++
++         }
++
++         private void bind(int listIndex){
++             listItemNumberView.setText(String.valueOf(listIndex));
++         }
++    }
++
+ 
+     // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
+ 
+Index: Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/gradle/wrapper/gradle-wrapper.properties	(date 1582839155754)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 12:41:00 PST 2017
++#Thu Feb 27 22:32:35 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.02-Exercise-ViewHolder/gradle/wrapper/gradle-wrapper.properties	(date 1583872199628)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 10:56:36 PST 2017
++#Tue Mar 10 21:29:59 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/build.gradle	(date 1582837996890)
+@@ -1,12 +1,12 @@
+ apply plugin: 'com.android.application'
+ 
+ android {
+-    compileSdkVersion 25
++    compileSdkVersion 29
+ 
+     defaultConfig {
+         applicationId "com.android.example.favoritetoys"
+-        minSdkVersion 10
+-        targetSdkVersion 25
++        minSdkVersion 14
++        targetSdkVersion 29
+         versionCode 1
+         versionName "1.0"
+     }
+@@ -19,8 +19,7 @@
+ 
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+-    implementation 'com.android.support:appcompat-v7:25.1.0'
++    //noinspection GradleCompatible
++    implementation 'com.android.support:appcompat-v7:25.4.0'
+ 
+-    // TODO (7) Remove the ConstraintLayout dependency as we aren't using it for these simple projects
+-    implementation 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+ }
+\ No newline at end of file
+Index: Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.04-Exercise-ConnectingToTheInternet/gradle/wrapper/gradle-wrapper.properties	(date 1583577672108)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Sat Mar 07 11:41:12 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/gradle/wrapper/gradle-wrapper.properties	(date 1583682923651)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Sun Mar 08 16:55:23 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04b-Webpages-Maps-and-Sharing/T04b.03-Exercise-ShareText/gradle/wrapper/gradle-wrapper.properties	(date 1584183389851)
+@@ -1,6 +1,6 @@
+-#Fri Jan 13 10:33:30 PST 2017
++#Sat Mar 14 11:56:29 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/build.gradle	(date 1584036370285)
+@@ -20,4 +20,5 @@
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+     implementation 'com.android.support:appcompat-v7:25.1.0'
+-}
+\ No newline at end of file
++    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
++}
+Index: Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/src/main/AndroidManifest.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04a-Starting-New-Activities/T04a.01-Exercise-AddNewActivity/app/src/main/AndroidManifest.xml	(date 1584036837367)
+@@ -1,21 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-  Copyright (C) 2016 The Android Open Source Project
+-
+-  Licensed under the Apache License, Version 2.0 (the "License");
+-  you may not use this file except in compliance with the License.
+-  You may obtain a copy of the License at
+-
+-       http://www.apache.org/licenses/LICENSE-2.0
+-
+-  Unless required by applicable law or agreed to in writing, software
+-  distributed under the License is distributed on an "AS IS" BASIS,
+-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-  See the License for the specific language governing permissions and
+-  limitations under the License.
+--->
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-          package="com.example.android.explicitintent">
++    xmlns:tools="http://schemas.android.com/tools"
++    package="com.example.android.explicitintent">
+ 
+     <application
+         android:allowBackup="true"
+@@ -23,20 +9,21 @@
+         android:label="@string/app_name"
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme">
+-        <activity android:name="com.example.android.explicitintent.MainActivity">
++        <activity android:name=".ChildActivity"
++            android:parentActivityName=".MainActivity"
++            tools:targetApi="jelly_bean">
++            <meta-data
++                android:name="android.support.PARENT_ACTIVITY"
++                android:value=".MainActivity"
++                />
++        </activity>
++        <activity android:name=".MainActivity">
+             <intent-filter>
+-                <action android:name="android.intent.action.MAIN"/>
++                <action android:name="android.intent.action.MAIN" />
+ 
+-                <category android:name="android.intent.category.LAUNCHER"/>
++                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+-
+-        <!--Android Studio will have created an Activity tag if you followed step 1 properly. Do-->
+-        <!--steps 8 - 11 within that tag. Please see the solution code if you get stuck.-->
+-        <!--TODO (8) Specify ChildActivity's parent using android:parentActivityName-->
+-        <!--TODO (9) Create a meta-data tag for this Activity-->
+-        <!--TODO (10) Specify the name of the meta-data as android.support.PARENT_ACTIVITY-->
+-        <!--TODO (11) Specify the value of the meta data as .MainActivity-->
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/app/src/main/res/layout/activity_main.xml	(date 1582838073309)
+@@ -14,27 +14,17 @@
+      See the License for the specific language governing permissions and
+      limitations under the License.
+ -->
+-<!--TODO (1) Change the ConstraintLayout to a FrameLayout.
+-    Note that you don't need to use the fully qualified name for FrameLayout. Replace
+-    "android.support.constraint.ConstraintLayout" with "FrameLayout"-->
++
+ <!--TODO (6) Remove the line that declares the id, we don't need it-->
+-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:id="@+id/activity_main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-    <!--TODO (2) Remove all attributes with the word constraint in them-->
+-    <!--TODO (3) Remove the default text-->
+-    <!--TODO (4) Give the TextView 16dp of padding-->
+-    <!--TODO (5) Set the text size to 20sp-->
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Hello World!"
+-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"
+-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
+-        app:layout_constraintRight_toRightOf="@+id/activity_main"
+-        app:layout_constraintTop_toTopOf="@+id/activity_main" />
++        android:padding="16dp"
++        android:textSize="20sp"/>
+ 
+-</android.support.constraint.ConstraintLayout>
++</FrameLayout>
+Index: Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/src/main/res/layout/activity_main.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.03-Exercise-AddScrolling/app/src/main/res/layout/activity_main.xml	(date 1582839290201)
+@@ -19,13 +19,15 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-    <!--TODO (1) Add a ScrollView around the TextView so you can scroll through the list of toys-->
+-    <!--TODO (2) Make the width of the ScrollView match_parent and the height wrap_content-->
+-
+-    <TextView
+-        android:id="@+id/tv_toy_names"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:padding="16dp"
+-        android:textSize="20sp" />
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content">
++        <TextView
++            android:id="@+id/tv_toy_names"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:padding="16dp"
++            android:textSize="20sp" />
++    </ScrollView>
++
+ </FrameLayout>
+\ No newline at end of file
+Index: Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/res/layout/number_list_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/res/layout/number_list_item.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/res/layout/number_list_item.xml	(date 1583941808627)
+@@ -29,7 +29,14 @@
+         android:fontFamily="monospace"
+         android:textSize="42sp"
+         tools:text="#42" />
+-
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:id="@+id/tv_view_holder_instance"
++        style="@style/TextAppearance.AppCompat.Title"
++        android:layout_gravity="end|center_vertical"
++        android:fontFamily="monospace"
++        android:textColor="#000"/>
+     <!--TODO (1) Add a TextView with id "@+id/tv_view_holder_instance-->
+     <!--TODO (2) Set the style to @style/TextAppearance.AppCompat.Title-->
+     <!--TODO (3) Set the width and the height to wrap_content-->
+Index: Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1583676462130)
+@@ -15,6 +15,7 @@
+  */
+ package com.example.android.datafrominternet;
+ 
++import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.Menu;
+@@ -56,17 +57,32 @@
+         String githubQuery = mSearchBoxEditText.getText().toString();
+         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+         mUrlDisplayTextView.setText(githubSearchUrl.toString());
+-        String githubSearchResults = null;
+-        try {
+-            githubSearchResults = NetworkUtils.getResponseFromHttpUrl(githubSearchUrl);
+-            mSearchResultsTextView.setText(githubSearchResults);
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-        // TODO (4) Create a new GithubQueryTask and call its execute method, passing in the url to query
+-    }
++
++        new GithubQueryTask().execute(githubSearchUrl);
++    }
++
++    // TODO (1) Create a class called GithubQueryTask that extends AsyncTask<URL, Void, String>
++    private class GithubQueryTask extends AsyncTask<URL, Void, String>{
++        @Override
++        protected String doInBackground(URL... urls) {
++            URL searchUrl = urls[0];
++            String GithubSearchQuery = null;
++            try{
++                GithubSearchQuery = NetworkUtils.getResponseFromHttpUrl(searchUrl);
++            } catch (IOException e){
++                e.getStackTrace();
++            }
++            return GithubSearchQuery;
++        }
+ 
+-    // TODO (1) Create a class called GithubQueryTask that extends AsyncTask<URL, Void, String>
++        @Override
++        protected void onPostExecute(String s) {
++            if (s != null && !s.equals("")){
++                mSearchResultsTextView.setText(s);
++            }
++            super.onPostExecute(s);
++        }
++    }
+     // TODO (2) Override the doInBackground method to perform the query. Return the results. (Hint: You've already written the code to perform the query)
+     // TODO (3) Override onPostExecute to display the results in the TextView
+ 
+Index: Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/AndroidManifest.xml	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/app/src/main/AndroidManifest.xml	(date 1583676525875)
+@@ -2,7 +2,7 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+           package="com.example.android.datafrominternet">
+ 
+-    <uses-permission android:name="android.permission.INTERNET" />
++<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+ 
+     <application
+         android:allowBackup="true"
+Index: Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.05-Exercise-CreateAsyncTask/build.gradle	(date 1583675959359)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson02-GitHub-Repo-Search/T02.05-Solution-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.05-Solution-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.05-Solution-CreateAsyncTask/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1583701374958)
+@@ -17,6 +17,7 @@
+ 
+ import android.os.AsyncTask;
+ import android.os.Bundle;
++import android.provider.OpenableColumns;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.Menu;
+ import android.view.MenuItem;
+@@ -70,6 +71,7 @@
+             URL searchUrl = params[0];
+             String githubSearchResults = null;
+             try {
++
+                 githubSearchResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
+             } catch (IOException e) {
+                 e.printStackTrace();
+Index: Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.01-Exercise-CreateLayout/gradle/wrapper/gradle-wrapper.properties	(date 1582828558057)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 12:41:00 PST 2017
++#Thu Feb 27 19:35:58 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson04b-Webpages-Maps-and-Sharing/T04b.01-Exercise-OpenWebpage/app/src/main/java/com/example/android/implicitintents/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson04b-Webpages-Maps-and-Sharing/T04b.01-Exercise-OpenWebpage/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson04b-Webpages-Maps-and-Sharing/T04b.01-Exercise-OpenWebpage/app/src/main/java/com/example/android/implicitintents/MainActivity.java	(date 1584182208243)
+@@ -15,6 +15,8 @@
+  */
+ package com.example.android.implicitintents;
+ 
++import android.content.Intent;
++import android.net.Uri;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.View;
+@@ -36,9 +38,9 @@
+      */
+     public void onClickOpenWebpageButton(View v) {
+         // TODO (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
+-
++        String url = "https://www.purepc.pl/";
+         // TODO (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
+-        Toast.makeText(this, "TODO: Open a web page when this button is clicked", Toast.LENGTH_SHORT).show();
++        openWebPage(url);
+     }
+ 
+     /**
+@@ -80,7 +82,16 @@
+     // TODO (1) Create a method called openWebPage that accepts a String as a parameter
+     // Do steps 2 - 4 within openWebPage
+ 
+-        // TODO (2) Use Uri.parse to parse the String into a Uri
++    public void openWebPage(String url) {
++        Uri webpage = Uri.parse(url);
++        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
++        if (intent.resolveActivity(getPackageManager()) != null) {
++            startActivity(intent);
++        }
++    }
++
++
++    // TODO (2) Use Uri.parse to parse the String into a Uri
+ 
+         // TODO (3) Create an Intent with Intent.ACTION_VIEW and the webpage Uri as parameters
+ 
+Index: Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/MainActivity.java	(date 1582924619281)
+@@ -16,6 +16,7 @@
+ package com.example.android.datafrominternet;
+ 
+ import android.content.Context;
++import android.net.UrlQuerySanitizer;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.Menu;
+@@ -24,6 +25,10 @@
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
++import com.example.android.datafrominternet.utilities.NetworkUtils;
++
++import java.net.URL;
++
+ public class MainActivity extends AppCompatActivity {
+ 
+     private EditText mSearchBoxEditText;
+@@ -43,8 +48,10 @@
+         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
+     }
+ 
+-    // TODO (2) Create a method called makeGithubSearchQuery
+-    // TODO (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
++    void makeGithubSearchQuery(){
++        URL githubSearchURL = NetworkUtils.buildUrl(mSearchBoxEditText.getText().toString());
++        mUrlDisplayTextView.setText(githubSearchURL.toString());
++    }
+ 
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+@@ -56,11 +63,7 @@
+     public boolean onOptionsItemSelected(MenuItem item) {
+         int itemThatWasClickedId = item.getItemId();
+         if (itemThatWasClickedId == R.id.action_search) {
+-            // TODO (4) Remove the Toast message when the search menu item is clicked
+-            Context context = MainActivity.this;
+-            String textToShow = "Search clicked";
+-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+-            // TODO (5) Call makeGithubSearchQuery when the search menu item is clicked
++            makeGithubSearchQuery();
+             return true;
+         }
+         return super.onOptionsItemSelected(item);
+Index: Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/app/build.gradle	(date 1583871637635)
+@@ -19,7 +19,8 @@
+ 
+ dependencies {
+     implementation fileTree(dir: 'libs', include: ['*.jar'])
+-    implementation 'com.android.support:appcompat-v7:25.1.0'
++    implementation 'com.android.support:appcompat-v7:25.4.0'
+ 
+     // TODO (1) Add RecyclerView dependency
++    implementation 'com.android.support:recyclerview-v7:25.4.0'
+ }
+Index: Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/utilities/NetworkUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/utilities/NetworkUtils.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/app/src/main/java/com/example/android/datafrominternet/utilities/NetworkUtils.java	(date 1582924738717)
+@@ -15,9 +15,12 @@
+  */
+ package com.example.android.datafrominternet.utilities;
+ 
++import android.net.Uri;
++
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.net.HttpURLConnection;
++import java.net.MalformedURLException;
+ import java.net.URL;
+ import java.util.Scanner;
+ 
+@@ -46,7 +49,17 @@
+      */
+     public static URL buildUrl(String githubSearchQuery) {
+         // TODO (1) Fill in this method to build the proper GitHub query URL
+-        return null;
++        Uri mUri = Uri.parse(GITHUB_BASE_URL).buildUpon()
++                .appendQueryParameter(PARAM_QUERY, githubSearchQuery)
++                .appendQueryParameter(PARAM_SORT, sortBy).build();
++
++        URL url = null;
++        try {
++            url = new URL(mUri.toString());
++        } catch (MalformedURLException e) {
++            e.printStackTrace();
++        }
++        return url;
+     }
+ 
+     /**
+Index: Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.05-Exercise-GoingGreen/app/src/main/java/com/example/android/recyclerview/GreenAdapter.java	(date 1583941808633)
+@@ -40,6 +40,7 @@
+     private static final String TAG = GreenAdapter.class.getSimpleName();
+ 
+     // TODO (8) Add a private static int called viewHolderCount that will hold the total number of ViewHolders that are created
++    private static int viewHolderCount;
+ 
+     private int mNumberItems;
+ 
+@@ -52,6 +53,7 @@
+     public GreenAdapter(int numberOfItems) {
+         mNumberItems = numberOfItems;
+         // TODO (9) When a new GreenAdapter is created, set the viewHolderCount to 0
++        viewHolderCount = 0;
+     }
+     /**
+      *
+@@ -77,10 +79,16 @@
+ 
+         // TODO (12) Set the text of viewHolderIndex to "ViewHolder index: " + viewHolderCount
+ 
++        viewHolder.viewHolderIndex.setText("ViewHolder index: " + viewHolderCount);
++
++
+         // TODO (13) Use ColorUtils.getViewHolderBackgroundColorFromInstance and pass in a Context and the viewHolderCount
++        int color =  ColorUtils.getViewHolderBackgroundColorFromInstance(context, viewHolderCount);
+         // TODO (14) Set the background color of viewHolder.itemView with the color from above
+-
++        viewHolder.viewHolderIndex.setBackgroundColor(color);
+         // TODO (15) Increment viewHolderCount and log its value
++        viewHolderCount++;
++        Log.i(GreenAdapter.TAG, "ViewHolderCount = " + viewHolderCount);
+ 
+         return viewHolder;
+     }
+@@ -120,6 +128,7 @@
+         // Will display the position in the list, ie 0 through getItemCount() - 1
+         TextView listItemNumberView;
+         // TODO (10) Add a TextView variable to display the ViewHolder index
++        TextView viewHolderIndex;
+ 
+         /**
+          * Constructor for our ViewHolder. Within this constructor, we get a reference to our
+@@ -134,6 +143,7 @@
+             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+ 
+             // TODO (11) Use itemView.findViewById to get a reference to tv_view_holder_instance
++            viewHolderIndex = (TextView) itemView.findViewById(R.id.tv_view_holder_instance);
+         }
+ 
+         /**
+Index: Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/build.gradle	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.06-Exercise-AddPolish/build.gradle	(date 1583682923643)
+@@ -6,7 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.6.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+Index: Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson02-GitHub-Repo-Search/T02.03-Exercise-DisplayUrl/gradle/wrapper/gradle-wrapper.properties	(date 1582917341783)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 17:35:09 PST 2017
++#Fri Feb 28 20:15:41 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson03-Green-Recycler-View/T03.01-Exercise-RecyclerViewLayout/gradle/wrapper/gradle-wrapper.properties	(date 1583871554457)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 10:56:36 PST 2017
++#Tue Mar 10 21:19:14 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: Lesson05a-Android-Lifecycle/T05a.02-Exercise-PersistData/app/src/main/java/com/example/android/lifecycle/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lesson05a-Android-Lifecycle/T05a.02-Exercise-PersistData/app/src/main/java/com/example/android/lifecycle/MainActivity.java	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson05a-Android-Lifecycle/T05a.02-Exercise-PersistData/app/src/main/java/com/example/android/lifecycle/MainActivity.java	(date 1584273721520)
+@@ -16,6 +16,7 @@
+     private static final String TAG = MainActivity.class.getSimpleName();
+ 
+     // TODO (1) Create a key String called LIFECYCLE_CALLBACKS_TEXT_KEY
++    private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
+ 
+     /* Constant values for the names of each respective lifecycle callback */
+     private static final String ON_CREATE = "onCreate";
+@@ -50,6 +51,9 @@
+         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
+ 
+         // TODO (6) If savedInstanceState is not null and contains LIFECYCLE_CALLBACKS_TEXT_KEY, set that text on our TextView
++        if (savedInstanceState != null && savedInstanceState.containsKey(LIFECYCLE_CALLBACKS_TEXT_KEY)) {
++            mLifecycleDisplay.setText(savedInstanceState.getString(LIFECYCLE_CALLBACKS_TEXT_KEY));
++        }
+ 
+         logAndAppend(ON_CREATE);
+     }
+@@ -139,6 +143,14 @@
+ 
+     // TODO (2) Override onSaveInstanceState
+     // Do steps 3 - 5 within onSaveInstanceState
++
++    @Override
++    protected void onSaveInstanceState(Bundle outState) {
++        super.onSaveInstanceState(outState);
++        logAndAppend("ON_SAVE_INSTANCE_STATE");
++        outState.putString(LIFECYCLE_CALLBACKS_TEXT_KEY,mLifecycleDisplay.getText().toString());
++    }
++
+     // TODO (3) Call super.onSaveInstanceState
+     // TODO (4) Call logAndAppend with the ON_SAVE_INSTANCE_STATE String
+     // TODO (5) Put the text from the TextView in the outState bundle
+Index: Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/gradle/wrapper/gradle-wrapper.properties	(revision b43e4b18a0629ba182cd663ae56d708f1db69174)
++++ Lesson01-Favorite-Toys/T01.02-Exercise-DisplayToyList/gradle/wrapper/gradle-wrapper.properties	(date 1582838718255)
+@@ -1,6 +1,6 @@
+-#Fri Jan 06 12:41:00 PST 2017
++#Thu Feb 27 22:25:18 CET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
