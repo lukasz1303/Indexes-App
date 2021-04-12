@@ -20,7 +20,7 @@ public interface IndeksDAO {
     @Query("SELECT * from indeksy ORDER BY surname ASC")
     LiveData<List<Indeks>> getAlphabetizedWords();
 
-    @Query("SELECT * FROM indeksy WHERE indeks LIKE '%' || :indeks || '%' or name LIKE '%' || :indeks || '%' or surname LIKE '%' || :indeks || '%' or `group` LIKE '%' || :indeks || '%' ORDER BY surname ASC")
+    @Query("SELECT * FROM indeksy WHERE indeks LIKE '%' || :indeks || '%' or name LIKE '%' || :indeks || '%' or surname LIKE '%' || :indeks || '%' or `group` LIKE '%' || :indeks || '%'  or `new_group` LIKE '%' || :indeks || '%' ORDER BY surname ASC")
     LiveData<List<Indeks>> getSingleIndex(String indeks);
 }
 

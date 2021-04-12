@@ -28,19 +28,22 @@ public class IndeksAdapter extends RecyclerView.Adapter<IndeksAdapter.IndeksView
         private TextView mSurnameTextView;
         private TextView mIndeksTextView;
         private TextView mGroupTextView;
+        private TextView mNewGroupTextView;
 
         public IndeksViewHolder (View itemView){
             super(itemView);
-            float textSize = mWidth/mDensity/16;
+            float textSize = mWidth/mDensity/18;
 
             mNameTextView = itemView.findViewById(R.id.tv_name);
             mSurnameTextView = itemView.findViewById(R.id.tv_surname);
             mIndeksTextView = itemView.findViewById(R.id.tv_indeks);
             mGroupTextView = itemView.findViewById(R.id.tv_group);
+            mNewGroupTextView = itemView.findViewById(R.id.tv_new_group);
             mNameTextView.setTextSize(textSize);
             mSurnameTextView.setTextSize(textSize);
             mIndeksTextView.setTextSize(textSize);
             mGroupTextView.setTextSize(textSize);
+            mNewGroupTextView.setTextSize(textSize);
 
         }
     }
@@ -65,6 +68,7 @@ public class IndeksAdapter extends RecyclerView.Adapter<IndeksAdapter.IndeksView
         holder.mNameTextView.setText(mIndeksy.get(position).getName());
         holder.mIndeksTextView.setText(mIndeksy.get(position).getIndeks());
         holder.mGroupTextView.setText(mIndeksy.get(position).getGroup());
+        holder.mNewGroupTextView.setText(mIndeksy.get(position).getNew_group());
 
         mContext = holder.itemView.getContext();
     }
